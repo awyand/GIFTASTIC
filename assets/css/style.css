@@ -25,7 +25,7 @@ body {
   max-width: 250px;
   min-height: 100vh;
   transition: all 0.3s;
-  background-color: rgb(26, 133, 251);
+  background-color: rgb(75, 83, 92);
   border-right: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
 }
@@ -37,6 +37,22 @@ body {
 
 .content {
   width: 100%;
+}
+
+/* Sidebar Buttons */
+.cast-member-btn {
+  width: 80%;
+  margin: 8px auto;
+  overflow: hidden;
+  font-size: 12px;
+  padding: 6px 8px;
+}
+
+.cast-member-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
 }
 
 /* Header */
@@ -78,8 +94,8 @@ body {
   background: none;
   outline: none;
   border-bottom: 1px solid rgb(255, 255, 255);
-  width: 80%;
-  font-size: 4rem;
+  width: 50%;
+  font-size: 2rem;
   color: rgb(255, 255, 255);
 }
 
@@ -87,22 +103,33 @@ body {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.append-cast-member-btn {
+.search-form-btn {
   color: rgb(255, 255, 255);
   background: none;
   border: none;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
-.append-cast-member-btn:hover {
+.search-form-btn:hover {
   color: rgb(230, 230, 230);
+}
+
+.search-form-btn:active,
+.search-form-btn:focus {
+  border: none;
+  background: none;
+}
+
+#close-search-btn {
+  position: absolute;
+  right: 10px;
+  top: 25%;
 }
 
 /* Gifs */
 .gif-container {
   position: relative;
   display: inline-block;
-
 }
 
 .cast-member-gif {
@@ -116,11 +143,11 @@ body {
   right: 20px;
   z-index: 9999;
   text-transform: uppercase;
-}
-
-/* MEDIA QUERIES */
-@media screen and (max-width: 992px) {
-  .header-main-text {
-    font-size: 3rem;
-  }
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 10px;
+  font-weight: bolder;
 }

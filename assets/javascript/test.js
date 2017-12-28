@@ -60,7 +60,7 @@ $(document).ready(function() {
       image: "Kristen_Wiig_Square.jpg"
     }
   ];
-
+  
 
   ////////////////////////////
   ////// EVENT HANDLERS //////
