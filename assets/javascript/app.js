@@ -110,44 +110,18 @@ $(document).ready(function() {
 
     // Call createButtons functions
     createButtons();
+
+    // Select new button
+    var newBtn = $(".btn-area button:first-child");
+
+    // Call createGifs
+    createGifs(newBtn);
   });
 
   // Cast Member Button Click Handler
   $(document).on("click", ".cast-member-btn", function() {
-    // Change hasGeneratedGifs to true
-    hasGeneratedGifs = true;
-
-    // Save clicked button's cast-member-name attribute to a string
-    var clickedName = $(this).attr("cast-member-name");
-
-    // Construct GIPHY query URL
-    var queryURL = `https://api.giphy.com/v1/gifs/search?q=snl+${clickedName}&api_key=${apiKey}&limit=10`;
-
-    // AJAX Request
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).done(function(response) {
-
-      // Empty gif-area
-      $(".gif-area").empty();
-
-      // Hide Sidebar
-      $(".sidebar").toggleClass("hidden");
-
-      // Loop through the response data gifs
-      for (i = 0; i < response.data.length; i++) {
-        // Save current gif to a variable
-        var currentGif = response.data[i];
-
-        // Append a gif container, rating, and gif to the gif-area
-        $(".gif-area").append(`
-          <div class="gif-container">
-            <div class="gif-rating">${currentGif.rating}</div>
-            <img class="cast-member-gif" src="${currentGif.images.fixed_height_still.url}">
-          </div>`);
-      }
-    });
+    var clickedBtn = $(this);
+    createGifs(clickedBtn);
   });
 
   // Gif Click Event Handler
@@ -180,23 +154,60 @@ $(document).ready(function() {
   ////// FUNCTIONS //////
   ///////////////////////
 
-
   function createButtons() {
     // Empty btn-area
     $(".btn-area").empty();
-
     // Loop through castMembers array
     for (i = 0; i < castMembers.length; i++) {
       // Save current cast member info to variables
       var castMemberName = castMembers[i].name;
       var castMemberImage = castMembers[i].image;
-      // Append a button with class cast-member-btn and attribute cast-member-name to btn-area
+      // Append a button to btn-area
       $(".btn-area").append(`
         <button type="button" class="btn btn-dark cast-member-btn" cast-member-name="${castMemberName}">
-        <img class="cast-member-img" src="assets/images/${castMemberImage}">
-        ${castMemberName}
+          <img class="cast-member-img" src="assets/images/${castMemberImage}">
+          ${castMemberName}
         </button>`);
     }
+  }
+
+  function createGifs(button) {
+    // Change hasGeneratedGifs to true
+    hasGeneratedGifs = true;
+
+    // Save clicked button's cast-member-name attribute to a string
+    var clickedName = button.attr("cast-member-name");
+
+    // Construct GIPHY query URL
+    var queryURL = `https://api.giphy.com/v1/gifs/search?q=snl+${clickedName}&api_key=${apiKey}&limit=10`;
+
+    console.log(queryURL);
+
+    // AJAX Request
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).done(function(response) {
+
+      // Empty gif-area
+      $(".gif-area").empty();
+
+      // Hide Sidebar
+      $(".sidebar").addClass("hidden");
+
+      // Loop through the response data gifs
+      for (i = 0; i < response.data.length; i++) {
+        // Save current gif to a variable
+        var currentGif = response.data[i];
+
+        // Append a gif container, rating, and gif to the gif-area
+        $(".gif-area").append(`
+          <div class="gif-container">
+            <div class="gif-rating">${currentGif.rating}</div>
+            <img class="cast-member-gif" src="${currentGif.images.fixed_height_still.url}">
+          </div>`);
+      }
+    });
   }
 
   ////////////////////////////

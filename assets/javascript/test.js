@@ -13,54 +13,57 @@ $(document).ready(function() {
   var castMembers = [
     {
       name: "Dan Aykroyd",
-      image: "Dan_Aykroyd_Square.jpg"
+      image: "dan_aykroyd.jpg"
     },
     {
       name: "Chevy Chase",
-      image: "Chevy_Chase_Square.jpg"
+      image: "chevy_chase.jpg"
     },
     {
       name: "Jane Curtin",
-      image: "Jane_Curtin_Square.jpg"
+      image: "jane_curtin.jpg"
     },
     {
       name: "Chris Farley",
-      image: "Chris_Farley_Square.jpg"
+      image: "chris_farley.jpg"
     },
     {
       name: "Will Ferrell",
-      image: "Will_Ferrell_Square.jpg"
+      image: "will_ferrell.jpg"
     },
     {
       name: "Eddie Murphy",
-      image: "Eddie_Murphy_Square.jpg"
+      image: "eddie_murphy.jpg"
     },
     {
       name: "Bill Murray",
-      image: "Bill_Murray_Square.jpg"
+      image: "bill_murray.jpg"
     },
     {
       name: "Amy Poehler",
-      image: "Amy_Poehler_Square.jpg"
+      image: "amy_poehler.jpg"
     },
     {
       name: "Gilda Radner",
-      image: "Gilda_Radner_Square.jpg"
+      image: "gilda_radner.jpg"
     },
     {
       name: "Adam Sandler",
-      image: "Adam_Sandler_Square.jpg"
+      image: "adam_sandler.jpg"
     },
     {
       name: "Kenan Thompson",
-      image: "Kenan_Thompson_Square.jpg"
+      image: "kenan_thompson.jpg"
     },
     {
       name: "Kristen Wiig",
-      image: "Kristen_Wiig_Square.jpg"
+      image: "kristen_wiig.jpg"
     }
   ];
-  
+
+  // Boolean to ensure Clear Gifs button doesn't remove instructions prior to user generating first set of gifs
+  var hasGeneratedGifs = false;
+
 
   ////////////////////////////
   ////// EVENT HANDLERS //////
@@ -78,20 +81,28 @@ $(document).ready(function() {
     $(".search-form").slideToggle("fast", "swing");
   });
 
+  // Clear Gifs Button Click Handler
+  $(document).on("click", ".clear-gif-area-btn", function() {
+    if(hasGeneratedGifs) {
+      // Empty gif-area
+      $(".gif-area").empty();
+    }
+  });
+
   // Append Cast Member Button Click Handler
   $(document).on("click", "#append-cast-member-btn", function(event) {
     // Prevent button from reloading page
     event.preventDefault();
     // Close search form
     $(".search-form").slideToggle("fast", "swing");
-    // Compare input to valid cast list ***********************
 
     // Add input to array
     var newCastMember = {
       name: `${$("#search-input").val().trim()}`,
-      image: "snl_square.jpg"
+      image: "snl.jpg"
     };
 
+    // Add new button to beginning of castMembers array
     castMembers.unshift(newCastMember);
 
     // Clear search form
@@ -99,38 +110,18 @@ $(document).ready(function() {
 
     // Call createButtons functions
     createButtons();
+
+    // Select new button
+    var newBtn = $(".btn-area button:first-child");
+
+    // Call createGifs
+    createGifs(newBtn);
   });
 
   // Cast Member Button Click Handler
   $(document).on("click", ".cast-member-btn", function() {
-    // Save clicked button's cast-member-name attribute to a string
-    var clickedName = $(this).attr("cast-member-name");
-
-    // Construct GIPHY query URL
-    var queryURL = `https://api.giphy.com/v1/gifs/search?q=snl+${clickedName}&api_key=${apiKey}&limit=10`;
-
-    // AJAX Request
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).done(function(response) {
-
-      // Empty gif-area
-      $(".gif-area").empty();
-
-      // Loop through the response data gifs
-      for (i = 0; i < response.data.length; i++) {
-        // Save current gif to a variable
-        var currentGif = response.data[i];
-
-        // Append a gif container, rating, and gif to the gif-area
-        $(".gif-area").append(`
-          <div class="gif-container">
-            <div class="gif-rating">${currentGif.rating}</div>
-            <img class="cast-member-gif" src="${currentGif.images.fixed_height_still.url}">
-          </div>`);
-      }
-    });
+    var clickedBtn = $(this);
+    createGifs(clickedBtn);
   });
 
   // Gif Click Event Handler
@@ -163,23 +154,60 @@ $(document).ready(function() {
   ////// FUNCTIONS //////
   ///////////////////////
 
-
   function createButtons() {
     // Empty btn-area
     $(".btn-area").empty();
-
     // Loop through castMembers array
     for (i = 0; i < castMembers.length; i++) {
       // Save current cast member info to variables
       var castMemberName = castMembers[i].name;
       var castMemberImage = castMembers[i].image;
-      // Append a button with class cast-member-btn and attribute cast-member-name to btn-area
+      // Append a button to btn-area
       $(".btn-area").append(`
         <button type="button" class="btn btn-dark cast-member-btn" cast-member-name="${castMemberName}">
-        <img class="cast-member-img" src="assets/images/${castMemberImage}">
-        ${castMemberName}
+          <img class="cast-member-img" src="assets/images/${castMemberImage}">
+          ${castMemberName}
         </button>`);
     }
+  }
+
+  function createGifs(button) {
+    // Change hasGeneratedGifs to true
+    hasGeneratedGifs = true;
+
+    // Save clicked button's cast-member-name attribute to a string
+    var clickedName = button.attr("cast-member-name");
+
+    // Construct GIPHY query URL
+    var queryURL = `https://api.giphy.com/v1/gifs/search?q=snl+${clickedName}&api_key=${apiKey}&limit=10`;
+
+    console.log(queryURL);
+
+    // AJAX Request
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).done(function(response) {
+
+      // Empty gif-area
+      $(".gif-area").empty();
+
+      // Hide Sidebar
+      $(".sidebar").toggleClass("hidden");
+
+      // Loop through the response data gifs
+      for (i = 0; i < response.data.length; i++) {
+        // Save current gif to a variable
+        var currentGif = response.data[i];
+
+        // Append a gif container, rating, and gif to the gif-area
+        $(".gif-area").append(`
+          <div class="gif-container">
+            <div class="gif-rating">${currentGif.rating}</div>
+            <img class="cast-member-gif" src="${currentGif.images.fixed_height_still.url}">
+          </div>`);
+      }
+    });
   }
 
   ////////////////////////////
