@@ -61,6 +61,9 @@ $(document).ready(function() {
     }
   ];
 
+  // Boolean to ensure Clear Gifs button doesn't remove instructions prior to user generating first set of gifs
+  var hasGeneratedGifs = false;
+
 
   ////////////////////////////
   ////// EVENT HANDLERS //////
@@ -76,6 +79,14 @@ $(document).ready(function() {
   // Add Cast Member Button Click Handler
   $(document).on("click", ".add-cast-member-btn", function() {
     $(".search-form").slideToggle("fast", "swing");
+  });
+
+  // Clear Gifs Button Click Handler
+  $(document).on("click", ".clear-gif-area-btn", function() {
+    if(hasGeneratedGifs) {
+      // Empty gif-area
+      $(".gif-area").empty();
+    }
   });
 
   // Append Cast Member Button Click Handler
@@ -103,6 +114,9 @@ $(document).ready(function() {
 
   // Cast Member Button Click Handler
   $(document).on("click", ".cast-member-btn", function() {
+    // Change hasGeneratedGifs to true
+    hasGeneratedGifs = true;
+
     // Save clicked button's cast-member-name attribute to a string
     var clickedName = $(this).attr("cast-member-name");
 
@@ -117,6 +131,9 @@ $(document).ready(function() {
 
       // Empty gif-area
       $(".gif-area").empty();
+
+      // Hide Sidebar
+      $(".sidebar").toggleClass("hidden");
 
       // Loop through the response data gifs
       for (i = 0; i < response.data.length; i++) {

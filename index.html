@@ -40,29 +40,32 @@
       <div class="content">
 
         <!-- Search Form -->
-        <form class="search-form" action="">
+        <form class="search-form">
           <input type="search" id="search-input" autocomplete="off" placeholder="Enter Name...">
           <button type="submit" id="append-cast-member-btn" class="search-form-btn fa fa-plus"></button>
           <button type="button" id="close-search-btn" class="search-form-btn fa fa-times-circle"></button>
         </form>
 
         <!-- Buttons -->
-        <div class="container">
+        <div class="container btn-container">
           <h2>GIFS FROM NEW YORK, IT'S SATURDAY NIGHT!</h2>
           <button type="button" class="btn btn-light main-btn cast-members-btn"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Cast Members</button>
           <button type="button" class="btn btn-light main-btn add-cast-member-btn"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;Add Cast Member</button>
+          <button type="button" class="btn btn-light main-btn clear-gif-area-btn"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;Clear Gifs</button>
         </div>
 
         <!-- Gif Area -->
         <div class="container">
           <div class="gif-area">
             <!-- Placeholder Message -->
-            <p><strong>INSTRUCTIONS</strong></p>
-            <p>Click the Cast Members button to select from a pre-loaded list of Saturday Night Live cast members.</p>
-            <p>You can also add your own cast member using the Add Cast Member button.</p>
-            <p>Click on a cast member to generate 10 random gifs from GIPHY.</p>
-            <p>Click a gif to make it play, click it again to make it stop.</p>
-            <p>GIPHY's MPAA rating will be displayed on each gif.</p>
+            <div class="placeholder-message">
+              <p><strong>INSTRUCTIONS</strong></p>
+              <p>Click the Cast Members button to select from a pre-loaded list of Saturday Night Live cast members.</p>
+              <p>You can also add your own cast member using the Add Cast Member button.</p>
+              <p>Click on a cast member to generate 10 random gifs from GIPHY.</p>
+              <p>Click a gif to make it play, click it again to make it stop.</p>
+              <p>GIPHY's MPAA rating will be displayed on each gif.</p>
+            </div>
           </div>
         </div>
       </div>
