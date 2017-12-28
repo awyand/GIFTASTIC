@@ -112,7 +112,7 @@ $(document).ready(function() {
     createButtons();
 
     // Select new button
-    var newBtn = $(".btn-area button:first-child");
+    var newBtn = $(".btn-area div:first-child").find(".cast-member-btn");
 
     // Call createGifs
     createGifs(newBtn);
@@ -120,7 +120,9 @@ $(document).ready(function() {
 
   // Cast Member Button Click Handler
   $(document).on("click", ".cast-member-btn", function() {
+    // Save clicked button to a variable
     var clickedBtn = $(this);
+    // Call createGifs function and pass it clickedBtn
     createGifs(clickedBtn);
   });
 
@@ -149,6 +151,23 @@ $(document).ready(function() {
     $(".search-form").slideToggle("fast", "swing");
   });
 
+  // Close Cast Member Button Click Handler
+  $(document).on("click", ".cast-member-btn-close", function() {
+    // Save parent to a variable
+    var clickedParent = $(this).parent();
+    // Save value of index attribute of clicked button to variable
+    var clickedIndex = clickedParent.attr("index");
+
+    // Remove element at index of clickedIndex from castMembers array
+    castMembers.splice(clickedIndex, 1);
+
+    // Animate button disappearing
+    clickedParent.animate({opacity: 0}, 300);
+
+    // Call createButtons
+    setTimeout(createButtons, 300);
+  });
+
 
   ///////////////////////
   ////// FUNCTIONS //////
@@ -162,12 +181,16 @@ $(document).ready(function() {
       // Save current cast member info to variables
       var castMemberName = castMembers[i].name;
       var castMemberImage = castMembers[i].image;
+
       // Append a button to btn-area
       $(".btn-area").append(`
-        <button type="button" class="btn btn-dark cast-member-btn" cast-member-name="${castMemberName}">
-          <img class="cast-member-img" src="assets/images/${castMemberImage}">
-          ${castMemberName}
-        </button>`);
+        <div class="cast-member-btn-wrapper" index=${i}>
+          <button type="button" class="cast-member-btn-close"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-dark cast-member-btn" cast-member-name="${castMemberName}">
+            <img class="cast-member-img" src="assets/images/${castMemberImage}">
+            ${castMemberName}
+          </button>
+        </div>`);
     }
   }
 
@@ -209,6 +232,7 @@ $(document).ready(function() {
       }
     });
   }
+
 
   ////////////////////////////
   ////// FUNCTION CALLS //////
