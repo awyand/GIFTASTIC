@@ -13,51 +13,51 @@ $(document).ready(function() {
   var castMembers = [
     {
       name: "Dan Aykroyd",
-      image: "Dan_Aykroyd_Square.jpg"
+      image: "dan_aykroyd.jpg"
     },
     {
       name: "Chevy Chase",
-      image: "Chevy_Chase_Square.jpg"
+      image: "chevy_chase.jpg"
     },
     {
       name: "Jane Curtin",
-      image: "Jane_Curtin_Square.jpg"
+      image: "jane_curtin.jpg"
     },
     {
       name: "Chris Farley",
-      image: "Chris_Farley_Square.jpg"
+      image: "chris_farley.jpg"
     },
     {
       name: "Will Ferrell",
-      image: "Will_Ferrell_Square.jpg"
+      image: "will_ferrell.jpg"
     },
     {
       name: "Eddie Murphy",
-      image: "Eddie_Murphy_Square.jpg"
+      image: "eddie_murphy.jpg"
     },
     {
       name: "Bill Murray",
-      image: "Bill_Murray_Square.jpg"
+      image: "bill_murray.jpg"
     },
     {
       name: "Amy Poehler",
-      image: "Amy_Poehler_Square.jpg"
+      image: "amy_poehler.jpg"
     },
     {
       name: "Gilda Radner",
-      image: "Gilda_Radner_Square.jpg"
+      image: "gilda_radner.jpg"
     },
     {
       name: "Adam Sandler",
-      image: "Adam_Sandler_Square.jpg"
+      image: "adam_sandler.jpg"
     },
     {
       name: "Kenan Thompson",
-      image: "Kenan_Thompson_Square.jpg"
+      image: "kenan_thompson.jpg"
     },
     {
       name: "Kristen Wiig",
-      image: "Kristen_Wiig_Square.jpg"
+      image: "kristen_wiig.jpg"
     }
   ];
 
@@ -84,14 +84,14 @@ $(document).ready(function() {
     event.preventDefault();
     // Close search form
     $(".search-form").slideToggle("fast", "swing");
-    // Compare input to valid cast list ***********************
 
     // Add input to array
     var newCastMember = {
       name: `${$("#search-input").val().trim()}`,
-      image: "snl_square.jpg"
+      image: "snl.jpg"
     };
 
+    // Add new button to beginning of castMembers array
     castMembers.unshift(newCastMember);
 
     // Clear search form
