@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  // Enable jQuery UI sortable functionality
+  $(".sortable").sortable();
 
   ///////////////////////////////
   ////// GLOBAL VARIABLES ///////
