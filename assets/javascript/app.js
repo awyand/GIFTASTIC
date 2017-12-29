@@ -88,6 +88,8 @@ $(document).ready(function() {
   // Add Cast Member Button Click Handler
   $(document).on("click", ".add-cast-member-btn", function() {
     $(".search-form").slideToggle("fast", "swing");
+    $("#search-input").focus();
+    $("#search-input").val("");
   });
 
   // Clear Gifs Button Click Handler
@@ -158,6 +160,8 @@ $(document).ready(function() {
   $(document).on("click", "#close-search-btn", function() {
     // Toggle search form slide
     $(".search-form").slideToggle("fast", "swing");
+    // Clear content
+    $("#search-input").val("");
   });
 
   // Close Cast Member Button Click Handler
@@ -214,6 +218,7 @@ $(document).ready(function() {
       // Append a button to btn-area
       $(".btn-area").append(`
         <div class="cast-member-btn-wrapper" index=${i}>
+          <i class="fa fa-bars cast-member-reorder" aria-hidden="true"></i>
           <button type="button" class="cast-member-btn-close"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
           <button type="button" class="btn btn-dark cast-member-btn" cast-member-name="${castMemberName}">
             <img class="cast-member-img" src="assets/images/${castMemberImage}">${castMemberName}
