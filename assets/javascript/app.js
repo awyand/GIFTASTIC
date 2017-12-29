@@ -4,6 +4,9 @@ $(document).ready(function() {
   $(".sortable").sortable();
   $(".sortable").disableSelection();
 
+  // Hide clear gifs button initially
+  $(".clear-gif-area-btn").hide();
+
   ///////////////////////////////
   ////// GLOBAL VARIABLES ///////
   ///////////////////////////////
@@ -97,6 +100,8 @@ $(document).ready(function() {
     if(hasGeneratedGifs) {
       // Empty gif-area
       $(".gif-area").empty();
+      // Hide button
+      $(".clear-gif-area-btn").hide();
     }
   });
 
@@ -263,6 +268,9 @@ $(document).ready(function() {
             <img class="cast-member-gif" src="${currentGif.images.fixed_height_still.url}">
           </div>`);
       }
+
+      // Show hide gifs button
+      $(".clear-gif-area-btn").show();
     });
   }
 
