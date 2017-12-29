@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   // Enable jQuery UI sortable functionality
   $(".sortable").sortable();
+  $(".sortable").disableSelection();
 
   ///////////////////////////////
   ////// GLOBAL VARIABLES ///////
@@ -12,7 +13,7 @@ $(document).ready(function() {
   var apiKey = "pu0g7RhCjo8xLoaeWnNyrJu1xfGOQh1R";
 
   // Initial castMembers array
-  var castMembers = [
+  var initialCastMembers = [
     {
       name: "Dan Aykroyd",
       image: "dan_aykroyd.jpg"
@@ -62,6 +63,12 @@ $(document).ready(function() {
       image: "kristen_wiig.jpg"
     }
   ];
+
+  // Set castMembers array to initialCastMembers array initally
+  var castMembers = initialCastMembers.slice(0);
+
+  // Initialize customCastMembers string for future use in storing HTML
+  var customCastMembers;
 
   // Boolean to ensure Clear Gifs button doesn't remove instructions prior to user generating first set of gifs
   var hasGeneratedGifs = false;
@@ -170,6 +177,26 @@ $(document).ready(function() {
     setTimeout(createButtons, 300);
   });
 
+  // Save Custom List Button Click Handler
+  $(document).on("click", ".save-gif-area-btn", function() {
+    for (i = 1; i <= $(".btn-area").children().length; i++) {
+      // Save HTML of btn-area to the customCastMembers varible
+      customCastMembers = $(".btn-area").html();
+    }
+  });
+
+  // Load Custom List Button Click Handler
+  $(document).on("click", ".load-gif-area-btn", function() {
+    // Set btn-area HTML to customCastMembers
+    $(".btn-area").html(customCastMembers);
+  });
+
+  // Load Original List Button Click Handler
+  $(document).on("click", ".reset-gif-area-btn", function() {
+    castMembers = initialCastMembers.slice(0);
+    createButtons();
+  });
+
 
   ///////////////////////
   ////// FUNCTIONS //////
@@ -189,8 +216,7 @@ $(document).ready(function() {
         <div class="cast-member-btn-wrapper" index=${i}>
           <button type="button" class="cast-member-btn-close"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
           <button type="button" class="btn btn-dark cast-member-btn" cast-member-name="${castMemberName}">
-            <img class="cast-member-img" src="assets/images/${castMemberImage}">
-            ${castMemberName}
+            <img class="cast-member-img" src="assets/images/${castMemberImage}">${castMemberName}
           </button>
         </div>`);
     }
