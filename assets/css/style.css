@@ -72,20 +72,6 @@ hr {
 }
 
 /* Sidebar Contents */
-.sidebar-header {
-  position: relative;
-  padding: 20px;
-  font-weight: bolder;
-}
-
-.sidebar-header:after {
-  position: absolute;
-  border-bottom: 1px solid rgb(255, 255, 255);
-  width: 90%;
-  content: "";
-  left: 5%;
-}
-
 .cast-member-btn-wrapper {
   position: relative;
   margin: 10px auto;
@@ -93,8 +79,10 @@ hr {
 
 .cast-member-reorder {
   position: absolute;
-  top: 37%;
-  left: 30px;
+  top: 25px;
+  left: 26px;
+  z-index: 9999;
+  font-size: 18px;
 }
 
 .cast-member-reorder:hover {
@@ -105,11 +93,20 @@ hr {
   cursor: -webkit-grabbing;
 }
 
+.cast-member-name {
+  display: inline;
+  position: absolute;
+  top: 23px;
+  left: 94px;
+}
+
 .cast-member-btn {
-  width: 80%;
+  width: 220px;
+  height: 65px;
   overflow: hidden;
   font-size: 12px;
   padding: 6px 8px;
+  position: relative;
 }
 
 .cast-member-img {
@@ -118,6 +115,9 @@ hr {
   border-radius: 50%;
   margin-right: 15px;
   border: 1px solid rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 6px;
+  left: 36px;
 }
 
 .cast-member-btn-close {
@@ -127,6 +127,7 @@ hr {
   color: rgb(255, 255, 255);
   top: -10px;
   right: 14px;
+  z-index: 9999;
 }
 
 .cast-member-btn-close:hover {

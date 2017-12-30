@@ -224,9 +224,10 @@ $(document).ready(function() {
       $(".btn-area").append(`
         <div class="cast-member-btn-wrapper" index=${i}>
           <i class="fa fa-bars cast-member-reorder" aria-hidden="true"></i>
-          <button type="button" class="cast-member-btn-close"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
           <button type="button" class="btn btn-dark cast-member-btn" cast-member-name="${castMemberName}">
-            <img class="cast-member-img" src="assets/images/${castMemberImage}">${castMemberName}
+            <img class="cast-member-img" src="assets/images/${castMemberImage}">
+            <p class="cast-member-name">${castMemberName}</p>
+            <button type="button" class="cast-member-btn-close"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
           </button>
         </div>`);
     }
