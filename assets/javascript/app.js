@@ -213,15 +213,15 @@ $(document).ready(function() {
   });
 
   // Cast Member Wrapper Hover Handler
-  $(document).on("mouseenter", ".cast-member-btn-wrapper", function() {
-    $(this).find(".cast-member-reorder").animate({opacity: 1}, 200);
-    $(this).find(".cast-member-btn-close").animate({opacity: 1}, 200);
-  })
-
-  $(document).on("mouseleave", ".cast-member-btn-wrapper", function() {
-    $(this).find(".cast-member-reorder").animate({opacity: 0}, 200);
-    $(this).find(".cast-member-btn-close").animate({opacity: 0}, 200);
-  });
+  // $(document).on("mouseenter", ".cast-member-btn-wrapper", function() {
+  //   $(this).find(".cast-member-reorder").animate({opacity: 1}, 200);
+  //   $(this).find(".cast-member-btn-close").animate({opacity: 1}, 200);
+  // })
+  //
+  // $(document).on("mouseleave", ".cast-member-btn-wrapper", function() {
+  //   $(this).find(".cast-member-reorder").animate({opacity: 0}, 200);
+  //   $(this).find(".cast-member-btn-close").animate({opacity: 0}, 200);
+  // });
 
 
   ///////////////////////
