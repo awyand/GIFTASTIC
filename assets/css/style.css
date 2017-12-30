@@ -83,6 +83,7 @@ hr {
   left: 26px;
   z-index: 9999;
   font-size: 18px;
+  opacity: 0;
 }
 
 .cast-member-reorder:hover {
@@ -128,6 +129,7 @@ hr {
   top: -10px;
   right: 4px;
   z-index: 9999;
+  opacity: 0;
 }
 
 .cast-member-btn-close:hover {
