@@ -72,6 +72,12 @@ hr {
 }
 
 /* Sidebar Contents */
+.sidebar-header {
+  font-size: 12px;
+  padding: 0 10px;
+  margin-top: 16px;
+}
+
 .cast-member-btn-wrapper {
   position: relative;
   margin: 10px auto;
