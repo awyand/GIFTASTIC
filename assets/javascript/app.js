@@ -6,9 +6,17 @@ $(document).ready(function() {
   ////////////////////////////////
 
 
-  // Enable jQuery UI sortable functionality
+  // jQuery UI functionality
   $(".sortable").sortable();
   $(".sortable").disableSelection();
+  $(".draggable").draggable();
+  $(".droppable").droppable({
+    drop: function(event, ui) {
+      var draggedWrapper = $(ui.draggable)[0]
+      var draggedBtn = $(draggedWrapper).find(".cast-member-btn");
+      createGifs(draggedBtn);
+    }
+  });
 
   // Hide clear gifs button initially
   $(".clear-gif-area-btn").hide();
@@ -241,7 +249,7 @@ $(document).ready(function() {
       $(".btn-area").append(`
         <div class="cast-member-btn-wrapper" index=${i}>
           <i class="fa fa-bars cast-member-reorder" aria-hidden="true"></i>
-          <button type="button" class="btn btn-dark cast-member-btn" cast-member-name="${castMemberName}">
+          <button type="button" class="btn btn-dark cast-member-btn draggable" cast-member-name="${castMemberName}">
             <img class="cast-member-img" src="assets/images/${castMemberImage}">
             <p class="cast-member-name">${castMemberName}</p>
             <button type="button" class="cast-member-btn-close"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
