@@ -18,10 +18,6 @@ button:hover {
   cursor: pointer;
 }
 
-hr {
-  border-color: rgba(255, 255, 255, 0.8);
-}
-
 /* Header */
 .header {
   background-image: url(../images/nyc.jpg);
@@ -89,7 +85,6 @@ hr {
   left: 26px;
   z-index: 9999;
   font-size: 18px;
-  /* opacity: 0; */
 }
 
 .cast-member-reorder:hover {
@@ -135,7 +130,6 @@ hr {
   top: -10px;
   right: 4px;
   z-index: 9999;
-  /* opacity: 0; */
 }
 
 .cast-member-btn-close:hover {

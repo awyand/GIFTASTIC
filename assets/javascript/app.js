@@ -220,18 +220,6 @@ $(document).ready(function() {
     createButtons();
   });
 
-  // Cast Member Wrapper Hover Handler
-  // $(document).on("mouseenter", ".cast-member-btn-wrapper", function() {
-  //   $(this).find(".cast-member-reorder").animate({opacity: 1}, 200);
-  //   $(this).find(".cast-member-btn-close").animate({opacity: 1}, 200);
-  // })
-  //
-  // $(document).on("mouseleave", ".cast-member-btn-wrapper", function() {
-  //   $(this).find(".cast-member-reorder").animate({opacity: 0}, 200);
-  //   $(this).find(".cast-member-btn-close").animate({opacity: 0}, 200);
-  // });
-
-
   ///////////////////////
   ////// FUNCTIONS //////
   ///////////////////////
@@ -249,7 +237,7 @@ $(document).ready(function() {
       $(".btn-area").append(`
         <div class="cast-member-btn-wrapper" index=${i}>
           <i class="fa fa-bars cast-member-reorder" aria-hidden="true"></i>
-          <button type="button" class="btn btn-dark cast-member-btn draggable" cast-member-name="${castMemberName}">
+          <button type="button" class="btn btn-dark cast-member-btn" cast-member-name="${castMemberName}">
             <img class="cast-member-img" src="assets/images/${castMemberImage}">
             <p class="cast-member-name">${castMemberName}</p>
             <button type="button" class="cast-member-btn-close"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
@@ -262,12 +250,13 @@ $(document).ready(function() {
     // Change hasGeneratedGifs to true
     hasGeneratedGifs = true;
 
-    // Save clicked button's cast-member-name attribute to a string
-    var clickedName = button.attr("cast-member-name");
+    // Save clicked button's cast-member-name attribute to a string and make it url-friendly
+    var clickedName = button.attr("cast-member-name").split(" ").join("+");
 
     // Construct GIPHY query URL
     var queryURL = `https://api.giphy.com/v1/gifs/search?q=snl+${clickedName}&api_key=${apiKey}&limit=10`;
 
+    // Log for debugging purposes
     console.log(queryURL);
 
     // AJAX Request
